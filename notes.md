@@ -42,7 +42,8 @@ INTER intersectar(Vec3 0, D, float λ_min, λ_max){
 	foreach e in esferas {
 		# Debo chequear que los lambda recibidos estén dentro de las restricciones de la escena. 
 		(λ1, λ2) = intersectar_esfera(e,0,D)
-		# La tercer condición toma en cuenta los casos que la recta intersecte más de una esfera. En ese caso, debemos asegurarnos que nos quedamos con el menor λ (el más cercano a la cámara)
+		# La tercer condición toma en cuenta los casos que la recta intersecte más de una esfera.
+        # En ese caso, debemos asegurarnos que nos quedamos con el menor λ (el más cercano a la cámara)
 		if (λ1 > λ_min && λ1 < λ_max && λ1 < i.λ){
 			i.e = e;
 			i.λ = λ1
@@ -71,7 +72,10 @@ Color trazar_rayo(Vec3 O,D, float λ_min, λ_max, int lim_rec) {
 			#Resolvemos lambert por cada luz y sumamos la luz
 			Vec3 L = luz.pos - P;
 
-			#Como calculamos las intercepciones con esferas matemáticamente perfectas, puede ser posible que el punto interceptado esté dentro de la esfera (por temas de calculos computacionales). Por eso, tenemos una constante E que se asegura que el Punto P se mueva un poquito hacia afuera de la esfera, para no intersectar con la misma esfera al buscar oculusiones.
+			# Como calculamos las intercepciones con esferas matemáticamente perfectas, puede ser posible que
+            # el punto interceptado esté dentro de la esfera (por temas de calculos computacionales). Por eso,
+            # tenemos una constante E que se asegura que el Punto P se mueva un poquito hacia afuera de la
+            # esfera, para no intersectar con la misma esfera al buscar oculusiones.
 			inter sombra = intersectar(P, L, E, 1);
 			if (sombra.e == NULL ){
 				res += lambert(P, N, L, V, i.e->m);
@@ -81,7 +85,8 @@ Color trazar_rayo(Vec3 O,D, float λ_min, λ_max, int lim_rec) {
 					# A partir de este rayo, calculo el color y lo compongo con el color que ya tenía
 					Color cr = trazar_rayo(P, RR, E, INF, lim_rec-1)
 
-					#Mediante combinación lineal con respecto al coeficiente de reflección de la esfera interceptada.
+					#Mediante combinación lineal con respecto al coeficiente de reflección de la esfera
+                    #interceptada.
 					res = res*(1-i.e->m.coef_refl)+cr*(i.e->m.coef_refl);
 				}
 				return res;
@@ -110,4 +115,5 @@ int main(camara){
 
 ## Cálculo de rayo reflejado
 
-Algorítmo recursivo, ya que el comportamiendo de la luz al reflejar es el mismo. Por esto nos conviene, así podemos reutilizar la lógica en trazar_rayo
+Algorítmo recursivo, ya que el comportamiendo de la luz al reflejar es el mismo.
+Por esto nos conviene, así podemos reutilizar la lógica en trazar_rayo
