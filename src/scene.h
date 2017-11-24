@@ -18,7 +18,7 @@ typedef struct
     float distance; // Distancia al plano de proyección.
 } Scene;
 
-Scene* scene_new(Vec3* camera, float viewportWidth, float viewportHeight, float distance);
+Scene* scene_new();
 
 void scene_free(Scene* scene);
 

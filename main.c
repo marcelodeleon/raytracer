@@ -1,6 +1,7 @@
 #include "framework/canvas.h"
 #include "framework/mm.h"
 #include "cg_parser.h"
+#include "src/scene.h"
 
 enum bool {false, true};
 typedef enum bool bool;
@@ -11,7 +12,7 @@ int main(int argc, char* argv[])
 	int cw = 500;
 	int ch = 500;
 	cg_init(cw, ch, NULL);
-	
+
 #ifdef WIN32
     freopen( "CON", "w", stdout );
 	freopen( "CON", "w", stderr );
@@ -35,7 +36,9 @@ int main(int argc, char* argv[])
 			}
 		}
 	}
-	cg_parse_conf("Escenas_Raytracer/escena1.txt");
+	Scene *scene = cg_parse_conf("Escenas_Raytracer/escena1.txt");
+    scene_print(scene);
+
 	// Actualizar la pantalla:
 	cg_repaint();
 
@@ -47,7 +50,7 @@ int main(int argc, char* argv[])
 		{
 			switch (event.type)
 			{
-				case SDL_KEYDOWN: 
+				case SDL_KEYDOWN:
 					if (event.key.keysym.sym != SDLK_ESCAPE)
 						break;
 				case SDL_QUIT : done = 1;
@@ -57,13 +60,8 @@ int main(int argc, char* argv[])
 
 	// Liberar recursos:
 	cg_close();
+    scene_free(scene);
 
-	// Ejemplo del modulo de Manejo de Memoria (MM):
-	int* pint = (int *)cg_malloc(10*sizeof(int));
-	printf("pint is a pointer: %p\n", pint);
-	cg_free(pint); // olvidarse de liberar este objeto produce un mensaje
-
-	
 	return 0;
 }
 

@@ -19,6 +19,6 @@ void material_print(Material material)
     cg_color_print(material.specularColor);
     printf("%s\n", "Color difuso: ");
     cg_color_print(material.diffuseColor);
-    printf("Exponent especular: %f\n", material.specularExponent);
-    printf("Fraccion de reflexion: %f\n", material.reflectionFraction);
+    printf("Exponente especular: %f\n", material.specularExponent);
+    printf("Fracción de reflexión: %f\n", material.reflectionFraction);
 }

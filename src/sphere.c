@@ -23,5 +23,5 @@ void sphere_print(Sphere* sphere)
 {
     material_print(sphere->material);
     vec3_print(sphere->center);
-    printf("Radius: %f", sphere->radius);
+    printf("Radius: %f\n", sphere->radius);
 }

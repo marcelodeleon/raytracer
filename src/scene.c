@@ -3,18 +3,14 @@
 #include "../framework/mm.h"
 #include "scene.h"
 
-Scene* scene_new(Vec3* camera, float viewportWidth, float viewportHeight, float distance)
+Scene* scene_new()
 {
     Scene *scene = (Scene *) cg_malloc(sizeof(Scene));
     scene->lights = list_new(sizeof(Light));
     scene->spheres = list_new(sizeof(Sphere));
-    scene->camera = camera;
-    scene->viewport[0] = viewportWidth;
-    scene->viewport[1] = viewportHeight;
-    scene->distance = distance;
 
     return scene;
-}
+} 
 
 void scene_free(Scene* scene)
 {
