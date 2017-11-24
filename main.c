@@ -1,5 +1,6 @@
 #include "framework/canvas.h"
 #include "framework/mm.h"
+#include "cg_parser.h"
 
 enum bool {false, true};
 typedef enum bool bool;
