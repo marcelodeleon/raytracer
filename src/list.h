@@ -1,6 +1,8 @@
 #ifndef LIST_H
 #define LIST_H
 
+#include <stdio.h>
+
 struct BlockStruct
 {
 	void* data;
@@ -45,5 +47,7 @@ void list_free(List* l);
 
 // Retorna el elemento en la posición index.
 void* list_get_nth(List* list, int index);
+
+void list_print(List* list);
 
 #endif //LIST_H

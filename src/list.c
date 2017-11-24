@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <assert.h>
 #include "list.h"
-#include "framework/mm.h"
+#include "../framework/mm.h"
 
 List* list_new(int dataSize)
 {
@@ -91,4 +91,9 @@ void list_free(List* l)
 	}
 	
 	cg_free(l);
+}
+
+void list_print(List* list)
+{
+    printf("Cantidad de elementos: %d\n", list->elementCount);
 }

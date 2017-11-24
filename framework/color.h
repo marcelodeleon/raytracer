@@ -20,5 +20,7 @@ typedef struct
  **/
 Color cg_color_new(byte r, byte g, byte b);
 
+void cg_color_print(Color color);
+
 #endif //COLOR_H
 
