@@ -9,7 +9,7 @@ LIB_DIRS=`sdl-config --libs`
 
 # agregue aqui, separado con espacios, cada archivo .c que produzca.
 # renombre la extension .c a .o (ejemplo.c -> ejemplo.o):
-OBJECTS = framework/color.o framework/mm.o framework/canvas.o cg_parser.o main.o src/matrix.o src/light.o src/scene.o src/vec3.o src/material.o src/sphere.o src/list.o
+OBJECTS = framework/color.o framework/mm.o framework/canvas.o cg_parser.o main.o src/matrix.o src/light.o src/scene.o src/vec3.o src/material.o src/sphere.o src/list.o src/raytracer.o
 
 # nombre a asignar al .exe producido:
 EXE = cg
@@ -19,7 +19,7 @@ EXE = cg
 CC = gcc
 
 CFLAGS = -Wall -std=c99 -ggdb -O0
-LD_FLAGS =
+LD_FLAGS = -lm
 #LD_FLAGS = -lSDLmain -lSDL
 
 #CPPCHECK = cppcheck --enable=all --error-exitcode=255 -f

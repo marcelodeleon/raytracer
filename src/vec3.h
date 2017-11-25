@@ -15,6 +15,12 @@ float vec3_dot_product(Vec3* v1, Vec3* v2);
 // Producto cruz.
 Vec3* vec3_cross_product(Vec3* v1, Vec3* v2);
 
+Vec3* vec3_mult_by_scalar(Vec3* v, float scalar);
+
+Vec3* vec3_add(Vec3* v1, Vec3* v2);
+
+Vec3* vec3_diff(Vec3* v1, Vec3* v2);
+
 void vec3_free(Vec3* vec3);
 
 void vec3_print(Vec3* vec3);

@@ -3,7 +3,7 @@
 #include "../framework/mm.h"
 #include "sphere.h"
 
-Sphere* sphere_new(Material material, Vec3* center, float radius)
+Sphere* sphere_new(Material* material, Vec3* center, float radius)
 {
     Sphere *sphere = (Sphere *) cg_malloc(sizeof(Sphere));
     sphere->material = material;

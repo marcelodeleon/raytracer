@@ -28,6 +28,36 @@ Vec3* vec3_cross_product(Vec3* v1, Vec3* v2)
     return result;
 }
 
+Vec3* vec3_mult_by_scalar(Vec3* v, float scalar)
+{
+    float x = v->x * scalar;
+    float y = v->y * scalar;
+    float z = v->z * scalar;
+    Vec3* result = vec3_new(x, y, z);
+
+    return result;
+}
+
+Vec3* vec3_add(Vec3* v1, Vec3* v2)
+{
+    float x = v1->x + v2->x;
+    float y = v1->y + v2->y;
+    float z = v1->z + v2->z;
+    Vec3* result = vec3_new(x, y, z);
+
+    return result;
+}
+
+Vec3* vec3_diff(Vec3* v1, Vec3* v2)
+{
+    float x = v1->x - v2->x;
+    float y = v1->y - v2->y;
+    float z = v1->z - v2->z;
+    Vec3* result = vec3_new(x, y, z);
+
+    return result;
+}
+
 void vec3_free(Vec3* vec3)
 {
     cg_free(vec3);

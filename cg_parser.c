@@ -163,7 +163,7 @@ Scene* cg_parse_conf(char* scene_file){
                                                 token = strtok(NULL," \n\t");
                                                 float coef_refl = atof(token);
 
-                                                Material material = material_new(specularColor, diffuseColor, coef_spec, coef_refl);
+                                                Material* material = material_new(specularColor, diffuseColor, coef_spec, coef_refl);
                                                 Sphere *sphere = sphere_new(material, center, radius);
                                                 list_add(scene->spheres, sphere);
                                             }

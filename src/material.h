@@ -10,8 +10,10 @@ typedef struct {
     float reflectionFraction;
 } Material;
 
-Material material_new(Color specularColor, Color diffuseColor, float specularExponent, float reflectionFraction);
+Material* material_new(Color specularColor, Color diffuseColor, float specularExponent, float reflectionFraction);
 
-void material_print(Material material);
+void material_free(Material* material);
+
+void material_print(Material* material);
 
 #endif //MATERIAL_H

@@ -1,7 +1,7 @@
 #include "framework/canvas.h"
 #include "framework/mm.h"
 #include "cg_parser.h"
-#include "src/scene.h"
+#include "src/raytracer.h"
 
 enum bool {false, true};
 typedef enum bool bool;
@@ -11,36 +11,41 @@ int main(int argc, char* argv[])
 	// Crear una ventana de 500x500 pixels:
 	int cw = 500;
 	int ch = 500;
-	cg_init(cw, ch, NULL);
+	cg_init(cw, ch, "Raytracer - Marcelo de León");
 
 #ifdef WIN32
     freopen( "CON", "w", stdout );
 	freopen( "CON", "w", stderr );
 #endif
 
-	bool b = true;
-	b = 1 && 0;
-	float r = rand() / (float)RAND_MAX;
-	if(!b)
-		printf("bool ok!!! %f\n",r);
-	// Dibujar un pequeno "+" en el centro de la ventana:
-	Color color = cg_color_new(0xff, 0x0, 0x0);
-	//int x, y;
-	for (int x = -1; x <= 1; x++)
-	{
-		for (int y = -1; y <= 1; y++)
-		{
-			if (x == 0 || y == 0)
-			{
-				cg_putpixel(x, y, color);
-			}
-		}
-	}
 	Scene *scene = cg_parse_conf("Escenas_Raytracer/escena1.txt");
     scene_print(scene);
 
-	// Actualizar la pantalla:
-	cg_repaint();
+    int x;
+    int y;
+    int xPrime;
+    int yPrime;
+    int zPrime;
+    // Origen del rayo.
+    Vec3* O = scene->camera;
+    // Dirección del rayo.
+    Vec3* D;
+
+    for (x = -cw/2; x < cw/2; x++)
+    {
+        for (y = -ch/2; y < ch/2; y++)
+        {
+            xPrime = x * (scene->viewport[0] / cw);
+            yPrime = y * (scene->viewport[1] / ch);
+            zPrime = scene->distance;
+
+            D = vec3_new(xPrime, yPrime, zPrime);
+            
+            Color c = follow_ray(scene, O, D, 1, INF, 1);           
+            cg_putpixel(x, y, c);           
+        }
+        cg_repaint();
+    }
 
 	int done = 0;
 	while (!done)
