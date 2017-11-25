@@ -1,4 +1,3 @@
-#include <math.h>
 #include "raytracer.h"
 
 Intersection* intersection_new()
