@@ -22,10 +22,7 @@ void scene_free(Scene* scene)
 
 void scene_print(Scene* scene)
 {
-    printf("%s\n", "Scene");
-    vec3_print(scene->camera);
-    printf("Viewport -> w: %f, h: %f\n", scene->viewport[0], scene->viewport[1]);
-    printf("Distancia al plano de proyeccion -> w: %f, h: %f\n", scene->viewport[0], scene->viewport[1]);
+    printf("%s\n", "Scene########################################################################");
     printf("%s\n", "Lights: ");
     list_print(scene->lights);
     Block* currentLightBlock = (Block *) scene->lights->head;
@@ -37,7 +34,7 @@ void scene_print(Scene* scene)
         currentLightBlock = currentLightBlock->next;
     }
 
-    printf("%s\n", "Scene: ");
+    printf("%s\n", "Spheres: ");
     list_print(scene->spheres);
     Block* currentSphereBlock = (Block *) scene->spheres->head;
     while(currentSphereBlock != NULL)
@@ -47,5 +44,12 @@ void scene_print(Scene* scene)
 
         currentSphereBlock = currentSphereBlock->next;
     }
-    list_print(scene->spheres);
+
+    printf("\n\n%s\n", "Summary: ");
+    printf("%s", "Camara: -> ");
+    vec3_print(scene->camera);
+    printf("Viewport -> [ w: %f, h: %f ]\n", scene->viewport[0], scene->viewport[1]);
+    printf("Distancia al plano de proyeccion -> %f\n", scene->distance);
+    printf("Luces puntuales -> %d\n", list_size(scene->lights));
+    printf("Esferas -> %d\n", list_size(scene->spheres));
 }
