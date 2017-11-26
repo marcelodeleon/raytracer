@@ -1,29 +1,12 @@
 #ifndef RAYTRACER_H
 #define RAYTRACER_H
 
-#include <math.h>
 #include "../framework/color.h"
-#include "../framework/mm.h"
-#include "../src/utils.h"
-#include "vec3.h"
 #include "list.h"
 #include "light.h"
 #include "sphere.h"
 #include "scene.h"
-
-typedef struct
-{
-    Sphere* sphere;
-    float closestLambda; // Lambda más cercano a la cámara, siempre es el lambda más chico.
-} Intersection;
-
-Intersection* intersection_new();
-
-void intersection_free(Intersection* intersection);
-
-float intersectWithSphere(Vec3* O, Vec3* D, Sphere* sphere);
-
-Intersection* intersect(Scene* scene, Vec3* O, Vec3* D, float minLambda, float maxLambda);
+#include "intersection.h"
 
 Color follow_ray(Scene* scene, Vec3* O, Vec3* D, float minLambda, float maxLambda, int recursionLimit);
 
