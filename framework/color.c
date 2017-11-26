@@ -22,9 +22,12 @@ Color cg_color_mult_by_factor(Color color, float factor)
     {
         factor = MAX_FACTOR;
     }
-    if(factor < MIN_FACTOR)
+    else
     {
-        factor = MIN_FACTOR;
+        if(factor < MIN_FACTOR)
+        {
+            factor = MIN_FACTOR;
+        }
     }
 
     Color result = cg_color_new(color.r * factor, color.g * factor, color.b * factor);

@@ -53,8 +53,6 @@ float solveCuadraticEquation(float a, float b, float c)
 
 float intersectWithSphere(Vec3* O, Vec3* D, Sphere* sphere)
 {
-    /* printf("Dirección del rayo ->"); */
-    /* vec3_print(D); */
     // Calcúlo los coeficientes de la ecuación de segundo grado que resulve la intersección entre el rayo y
     // la esfera.
     float a = vec3_dot_product(D, D);
@@ -71,6 +69,9 @@ float intersectWithSphere(Vec3* O, Vec3* D, Sphere* sphere)
     // Solamente retornamos la solución más cercana a la cámara (de haber intersección).
     // En caso de que no exista solución, se retorna infinito.
     solution = solveCuadraticEquation(a, b, c);
+
+    // Liberar recursos.
+    vec3_free(OC);
 
     return solution;
 }
@@ -107,6 +108,8 @@ Color follow_ray(Scene* scene, Vec3* O, Vec3* D, float minLambda, float maxLambd
     if(intersection->sphere != NULL)
     {
         result = cg_color_mult_by_factor(intersection->sphere->material->diffuseColor, scene->ambienceLight);
+
+
         Vec3* lambdaD = vec3_mult_by_scalar(D, intersection->closestLambda);
         Vec3* P = vec3_add(O, lambdaD);
         Vec3* N = vec3_diff(P, intersection->sphere->center);
@@ -122,6 +125,9 @@ Color follow_ray(Scene* scene, Vec3* O, Vec3* D, float minLambda, float maxLambd
             Vec3* RV = vec3_diff(vec3_mult_by_scalar(N, 2 * dotNV), V);
 
             result = follow_ray(scene, P, RV, EPSILON, INF, recursionLimit - 1);
+
+            // Liberar recursos.
+            vec3_free(RV);
         }
 
         // Liberar recursos.
