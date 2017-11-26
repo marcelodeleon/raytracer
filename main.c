@@ -38,7 +38,7 @@ int main(int argc, char* argv[])
 
             D = vec3_new(xPrime, yPrime, zPrime);
             
-            Color c = follow_ray(scene, O, D, 1, INF, 1);           
+            Color c = trace_ray(scene, O, D, 1, INF, 1);           
             cg_putpixel(x, y, c);           
             vec3_free(D);
         }

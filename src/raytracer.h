@@ -8,7 +8,7 @@
 #include "scene.h"
 #include "intersection.h"
 
-Color follow_ray(Scene* scene, Vec3* O, Vec3* D, float minLambda, float maxLambda, int recursionLimit);
+Color trace_ray(Scene* scene, Vec3* O, Vec3* D, float minLambda, float maxLambda, int recursionLimit);
 
 Color lambert(Vec3* P, Vec3* N, Light* L, Material material);
 

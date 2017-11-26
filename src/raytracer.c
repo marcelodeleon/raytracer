@@ -1,6 +1,6 @@
 #include "raytracer.h"
 
-Color follow_ray(Scene* scene, Vec3* O, Vec3* D, float minLambda, float maxLambda, int recursionLimit)
+Color trace_ray(Scene* scene, Vec3* O, Vec3* D, float minLambda, float maxLambda, int recursionLimit)
 {
     Color result = cg_color_new(0, 0, 0);
     Intersection *intersection = intersect(scene, O, D, minLambda, maxLambda);
@@ -43,7 +43,7 @@ Color follow_ray(Scene* scene, Vec3* O, Vec3* D, float minLambda, float maxLambd
             Vec3* dotNV2N = vec3_mult_by_scalar(N, 2 * dotNV);
             Vec3* RV = vec3_diff(dotNV2N, V);
 
-            result = follow_ray(scene, P, RV, EPSILON, INF, recursionLimit - 1);
+            result = trace_ray(scene, P, RV, EPSILON, INF, recursionLimit - 1);
 
             // Liberar recursos.
             vec3_free(RV);
