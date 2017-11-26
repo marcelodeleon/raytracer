@@ -49,7 +49,7 @@ float solveCuadraticEquation(float a, float b, float c)
     }
 
     return solution;
-} 
+}
 
 float intersectWithSphere(Vec3* O, Vec3* D, Sphere* sphere)
 {
@@ -71,9 +71,9 @@ float intersectWithSphere(Vec3* O, Vec3* D, Sphere* sphere)
     // Solamente retornamos la solución más cercana a la cámara (de haber intersección).
     // En caso de que no exista solución, se retorna infinito.
     solution = solveCuadraticEquation(a, b, c);
-     
+
     return solution;
-} 
+}
 
 Intersection* intersect(Scene* scene, Vec3* O, Vec3* D, float minLambda, float maxLambda)
 {
@@ -96,7 +96,7 @@ Intersection* intersect(Scene* scene, Vec3* O, Vec3* D, float minLambda, float m
 
         currentSphereBlock = currentSphereBlock->next;
     }
-     
+
     return intersection;
 }
 
