@@ -29,6 +29,8 @@ typedef struct
 
 Intersection* intersection_new();
 
+void intersection_free(Intersection* intersection);
+
 float min(float a, float b);
 
 float solveCuadraticEquation(float a, float b, float c);
@@ -40,4 +42,5 @@ Intersection* intersect(Scene* scene, Vec3* O, Vec3* D, float minLambda, float m
 Color follow_ray(Scene* scene, Vec3* O, Vec3* D, float minLambda, float maxLambda, int recursionLimit);
 
 Color lambert(Vec3* P, Vec3* N, Light* L, Material material);
+
 #endif //RAYTRACER_H

@@ -9,6 +9,11 @@ Intersection* intersection_new()
     return intersection;
 }
 
+void intersection_free(Intersection* intersection)
+{
+    cg_free(intersection);
+}
+
 float min(float a, float b)
 {
     float min = a;
@@ -48,6 +53,8 @@ float solveCuadraticEquation(float a, float b, float c)
 
 float intersectWithSphere(Vec3* O, Vec3* D, Sphere* sphere)
 {
+    /* printf("Dirección del rayo ->"); */
+    /* vec3_print(D); */
     // Calcúlo los coeficientes de la ecuación de segundo grado que resulve la intersección entre el rayo y
     // la esfera.
     float a = vec3_dot_product(D, D);
@@ -84,6 +91,7 @@ Intersection* intersect(Scene* scene, Vec3* O, Vec3* D, float minLambda, float m
             // Tengo una intersección válida, actualizo la estructura.
             intersection->sphere = currentSphere;
             intersection->closestLambda = lambda;
+            printf("Closest lambda now -> %f\n", lambda);
         }
 
         currentSphereBlock = currentSphereBlock->next;
@@ -98,10 +106,13 @@ Color follow_ray(Scene* scene, Vec3* O, Vec3* D, float minLambda, float maxLambd
     Intersection *intersection = intersect(scene, O, D, minLambda, maxLambda);
     if(intersection->sphere != NULL)
     {
+        result = cg_color_mult_by_factor(intersection->sphere->material->diffuseColor, scene->ambienceLight);
         Vec3* lambdaD = vec3_mult_by_scalar(D, intersection->closestLambda);
         Vec3* P = vec3_add(O, lambdaD);
         Vec3* N = vec3_diff(P, intersection->sphere->center);
         Vec3* V = vec3_mult_by_scalar(D, -1.0f);
+
+        vec3_free(lambdaD);
 
         // Add light foreach.
         if(recursionLimit > 0 && intersection->sphere->material->reflectionFraction > 0)
@@ -112,7 +123,15 @@ Color follow_ray(Scene* scene, Vec3* O, Vec3* D, float minLambda, float maxLambd
 
             result = follow_ray(scene, P, RV, EPSILON, INF, recursionLimit - 1);
         }
+
+        // Liberar recursos.
+        vec3_free(P);
+        vec3_free(N);
+        vec3_free(V);
     }
+
+    // Liberar recursos.
+    intersection_free(intersection);
 
     return result;
 }

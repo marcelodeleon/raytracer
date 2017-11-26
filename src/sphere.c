@@ -15,6 +15,7 @@ Sphere* sphere_new(Material* material, Vec3* center, float radius)
 
 void sphere_free(Sphere* sphere)
 {
+    material_free(sphere->material);
     vec3_free(sphere->center);
     cg_free(sphere);
 }
