@@ -14,43 +14,6 @@ void intersection_free(Intersection* intersection)
     cg_free(intersection);
 }
 
-float min(float a, float b)
-{
-    float min = a;
-    if(a > b)
-    {
-        min = b;
-    }
-
-    return min;
-}
-
-float solveCuadraticEquation(float a, float b, float c)
-{
-    float solution1;
-    float solution2;
-    float solution; // Solución final, lambda más cercano a la cámara.
-
-    // Analizo el determinante para ver si existen raíces reales.
-    float delta = pow(b, 2) - 4 * a * c;
-
-    if(delta < 0)
-    {
-        // No existen raíces reales. Retorno infinito como solución.
-        solution = INF;
-    }
-    else
-    {
-        // Retorno la solución más chica, este es el lambda de la intersección más cercano a la cámara.
-        solution1 = ( -b + sqrt(delta) ) / 2 * a;
-        solution2 = ( -b - sqrt(delta) ) / 2 * a;
-
-        solution = min(solution1, solution2);
-    }
-
-    return solution;
-}
-
 float intersectWithSphere(Vec3* O, Vec3* D, Sphere* sphere)
 {
     // Calcúlo los coeficientes de la ecuación de segundo grado que resulve la intersección entre el rayo y
@@ -115,7 +78,26 @@ Color follow_ray(Scene* scene, Vec3* O, Vec3* D, float minLambda, float maxLambd
 
         vec3_free(lambdaD);
 
-        // Add light foreach.
+        // Calcula las sombras de las esferas.
+        Block *currentLightBlock = scene->lights->head;
+        Light *currentLight;
+        Vec3 *L;
+        /* while(currentLightBlock != NULL) */
+        /* { */
+        /*     currentLight = (Light *) currentLightBlock->data; */
+        /*     L = vec3_diff(currentLight->position, P); */
+        /*     Intersection *shadow = intersection(scene, P, L, EPSILON, 1); */
+        /*     /1* if(shadow->sphere == NULL) *1/ */
+        /*     /1* { *1/ */
+                
+        /*     /1* } *1/ */
+
+
+        /*     vec3_free(L); */
+
+        /*     currentLightBlock = currentLightBlock->next; */
+        /* } */
+
         if(recursionLimit > 0 && intersection->sphere->material->reflectionFraction > 0)
         {
             // Calcúlo el rayo reflejado.
