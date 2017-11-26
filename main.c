@@ -20,9 +20,9 @@ int main(int argc, char* argv[])
 
     int x;
     int y;
-    int xPrime;
-    int yPrime;
-    int zPrime;
+    float xPrime;
+    float yPrime;
+    float zPrime;
     // Origen del rayo.
     Vec3* O = scene->camera;
     // Dirección del rayo.
@@ -40,8 +40,7 @@ int main(int argc, char* argv[])
             
             Color c = follow_ray(scene, O, D, 1, INF, 1);           
             cg_putpixel(x, y, c);           
-            printf("Putting pixel -> { x: %d, y: %d }\n", x, y);           
-            cg_color_print(c);
+            vec3_free(D);
         }
         cg_repaint();
     }
