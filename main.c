@@ -3,9 +3,6 @@
 #include "cg_parser.h"
 #include "src/raytracer.h"
 
-enum bool {false, true};
-typedef enum bool bool;
-
 int main(int argc, char* argv[])
 {
 	// Crear una ventana de 500x500 pixels:
@@ -43,6 +40,8 @@ int main(int argc, char* argv[])
             
             Color c = follow_ray(scene, O, D, 1, INF, 1);           
             cg_putpixel(x, y, c);           
+            printf("Putting pixel -> { x: %d, y: %d }\n", x, y);           
+            cg_color_print(c);
         }
         cg_repaint();
     }
