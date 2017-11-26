@@ -27,7 +27,7 @@ int keep_in_range(int min, int max, int value);
 float keep_between_0_and_1(float value);
 
 /*
- * Resuelve la función cuadrática que calcula la intersección entre el rayo y las esferas.
+ * Resuelve la función cuadrática que calcúla la intersección entre el rayo y las esferas.
  * Es importante notar que la función retorna el valor más chico de las dos soluciones, esto se debe a que
  * el valor más chico representa el punto de intersección más cercano a la cámara.
  */
