@@ -7,8 +7,12 @@
 #include <SDL.h>
 #endif //APPLEMAC
 
+#include "../src/utils.h"
+
 #define MAX_FACTOR 1.0f
 #define MIN_FACTOR 0.0f
+#define MAX_CHANNEL_VALUE 255
+#define MIN_CHANNEL_VALUE 0
 
 typedef unsigned char byte;
 
@@ -23,7 +27,15 @@ typedef struct
  **/
 Color cg_color_new(byte r, byte g, byte b);
 
+/*
+ * Devuelve el color resultante de multiplicar todos sus canales por un factor (incluído en [0, 1]).
+ */
 Color cg_color_mult_by_factor(Color color, float factor);
+
+/*
+ * Suma dos colores, sumando cada uno de sus canales (r, g y b).
+ */
+Color cg_color_add(Color color1, Color color2);
 
 void cg_color_print(Color color);
 
