@@ -12,9 +12,8 @@ typedef struct
     List* spheres;
     Vec3* camera; // Posición de la cámara.
     float ambienceLight;
-    // viewport[0] es viewportWidth.
-    // viewport[1] es viewportHeight.
-    float viewport[2];
+    float vw;
+    float vh;
     float distance; // Distancia al plano de proyección.
 } Scene;
 

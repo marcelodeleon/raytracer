@@ -48,7 +48,7 @@ void scene_print(Scene* scene)
     printf("\n\n%s\n", "Summary: ");
     printf("%s", "Camara: -> ");
     vec3_print(scene->camera);
-    printf("Viewport -> [ w: %f, h: %f ]\n", scene->viewport[0], scene->viewport[1]);
+    printf("Viewport -> [ w: %f, h: %f ]\n", scene->vw, scene->vh);
     printf("Distancia al plano de proyeccion -> %f\n", scene->distance);
     printf("Luces puntuales -> %d\n", list_size(scene->lights));
     printf("Esferas -> %d\n", list_size(scene->spheres));

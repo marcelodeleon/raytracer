@@ -49,8 +49,8 @@ Scene* cg_parse_conf(char* scene_file){
                         float vh = atof(token);
 
                         // Almacenar viewport.
-                        scene->viewport[0] = vw;
-                        scene->viewport[1] = vh;
+                        scene->vw = vw;
+                        scene->vh = vh;
                     }
                     else
                     {

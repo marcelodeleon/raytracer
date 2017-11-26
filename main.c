@@ -32,8 +32,8 @@ int main(int argc, char* argv[])
     {
         for (y = -ch/2; y < ch/2; y++)
         {
-            xPrime = x * (scene->viewport[0] / cw);
-            yPrime = y * (scene->viewport[1] / ch);
+            xPrime = x * (scene->vw / cw);
+            yPrime = y * (scene->vh / ch);
             zPrime = scene->distance;
 
             D = vec3_new(xPrime, yPrime, zPrime);
