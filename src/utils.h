@@ -1,3 +1,6 @@
+#ifndef UTILS_H
+#define UTILS_H
+
 #include <float.h>
 #include <math.h>
 
@@ -31,3 +34,5 @@ float keep_between_0_and_1(float value);
 float solveCuadraticEquation(float a, float b, float c);
 
 float min(float a, float b);
+
+#endif //UTILS_H
