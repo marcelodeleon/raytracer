@@ -7,6 +7,9 @@
 #include <SDL.h>
 #endif //APPLEMAC
 
+#define MAX_FACTOR 1.0f
+#define MIN_FACTOR 0.0f
+
 typedef unsigned char byte;
 
 typedef struct
@@ -19,6 +22,8 @@ typedef struct
  * r,g,b deben pertenecer al rango 0-255.
  **/
 Color cg_color_new(byte r, byte g, byte b);
+
+Color cg_color_mult_by_factor(Color color, float factor);
 
 void cg_color_print(Color color);
 
