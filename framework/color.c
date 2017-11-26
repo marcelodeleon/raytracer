@@ -17,20 +17,9 @@ void cg_color_print(Color color)
 Color cg_color_mult_by_factor(Color color, float factor)
 {
     // Me aseguro que el valor del factor esté siempre definido en [0, 1].
-    if(factor > MAX_FACTOR)
-    {
-        factor = MAX_FACTOR;
-    }
-    else
-    {
-        if(factor < MIN_FACTOR)
-        {
-            factor = MIN_FACTOR;
-        }
-    }
+    factor = keep_between_0_and_1(factor);
 
     Color result = cg_color_new(color.r * factor, color.g * factor, color.b * factor);
-
     return result;
 }
 

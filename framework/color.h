@@ -9,8 +9,6 @@
 
 #include "../src/utils.h"
 
-#define MAX_FACTOR 1.0f
-#define MIN_FACTOR 0.0f
 #define MAX_CHANNEL_VALUE 255
 #define MIN_CHANNEL_VALUE 0
 
