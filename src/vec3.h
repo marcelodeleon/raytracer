@@ -17,6 +17,21 @@ Vec3* vec3_cross_product(Vec3* v1, Vec3* v2);
 
 Vec3* vec3_mult_by_scalar(Vec3* v, float scalar);
 
+/*
+ * Retorna la norma de un vector.
+ */
+float vec3_norm(Vec3* v);
+
+/*
+ * Retorna el vector normalizado.
+ */
+Vec3* vec3_normalize(Vec3* v);
+
+/*
+ * Retorna el producto punto entre los vectores, dividido entre la multiplicación de sus normas.
+ */
+float vec3_normalized_dot_product(Vec3* v1, Vec3* v2);
+
 Vec3* vec3_add(Vec3* v1, Vec3* v2);
 
 Vec3* vec3_diff(Vec3* v1, Vec3* v2);

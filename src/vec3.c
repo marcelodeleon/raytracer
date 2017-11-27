@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <math.h>
 #include <stdlib.h>
 #include "../framework/mm.h"
 #include "vec3.h"
@@ -38,6 +39,19 @@ Vec3* vec3_mult_by_scalar(Vec3* v, float scalar)
     return result;
 }
 
+float vec3_norm(Vec3* v)
+{
+    return sqrt(vec3_dot_product(v, v));
+}
+
+Vec3* vec3_normalize(Vec3* v)
+{
+    float norm = vec3_norm(v);
+    Vec3* normalized = vec3_mult_by_scalar(v, 1/norm);
+
+    return normalized;
+}
+
 Vec3* vec3_add(Vec3* v1, Vec3* v2)
 {
     float x = v1->x + v2->x;
@@ -46,6 +60,14 @@ Vec3* vec3_add(Vec3* v1, Vec3* v2)
     Vec3* result = vec3_new(x, y, z);
 
     return result;
+}
+
+float vec3_normalized_dot_product(Vec3* v1, Vec3* v2)
+{
+    float normV1 = vec3_norm(v1);
+    float normV2 = vec3_norm(v2);
+
+    return vec3_dot_product(v1, v2) / ( normV1 * normV2 );
 }
 
 Vec3* vec3_diff(Vec3* v1, Vec3* v2)
