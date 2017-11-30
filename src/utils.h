@@ -12,7 +12,6 @@
 #define EPSILON 0.001f
 
 // Defino el infiníto como el float más grande que C puede representar.
-#define INF FLT_MAX
 
 /*
  * Se asegura que el valor siempre se encuentre dentro del intervalo [min, max] especificado.

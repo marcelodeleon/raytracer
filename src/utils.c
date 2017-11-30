@@ -57,7 +57,7 @@ float solveCuadraticEquation(float a, float b, float c)
     if(delta < 0)
     {
         // No existen raíces reales. Retorno infinito como solución.
-        solution = INF;
+        solution = FLT_MAX;
     }
     else
     {

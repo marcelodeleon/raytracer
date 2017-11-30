@@ -5,7 +5,7 @@ Intersection* intersection_new()
 {
     Intersection *intersection = (Intersection *) cg_malloc(sizeof(Intersection));
     intersection->sphere = NULL;
-    intersection->closestLambda = INF;
+    intersection->closestLambda = FLT_MAX;
 
     return intersection;
 }

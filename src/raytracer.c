@@ -46,12 +46,12 @@ Color trace_ray(Scene* scene, Vec3* O, Vec3* D, float minLambda, float maxLambda
     Intersection *intersection = intersect(scene, O, D, minLambda, maxLambda);
     if(intersection->sphere != NULL)
     {
-        result = cg_color_mult_by_factor(intersection->sphere->material->diffuseColor, scene->ambienceLight);
-
         Vec3* lambdaD = vec3_mult_by_scalar(D, intersection->closestLambda);
         Vec3* P = vec3_add(O, lambdaD);
         Vec3* N = vec3_diff(P, intersection->sphere->center);
         Vec3* V = vec3_mult_by_scalar(D, -1.0f);
+
+        result = cg_color_mult_by_factor(intersection->sphere->material->diffuseColor, scene->ambienceLight);
 
         vec3_free(lambdaD);
 
@@ -93,7 +93,7 @@ Color trace_ray(Scene* scene, Vec3* O, Vec3* D, float minLambda, float maxLambda
             Vec3* dotNV2N = vec3_mult_by_scalar(normalizedN, 2 * dotNV);
             Vec3* RV = vec3_diff(dotNV2N, V);
 
-            reflected = trace_ray(scene, P, RV, EPSILON, INF, recursionLimit - 1);
+            reflected = trace_ray(scene, P, RV, EPSILON, FLT_MAX, recursionLimit - 1);
             Color a = cg_color_mult_by_factor(result, 1 - intersection->sphere->material->reflectionFraction);
             Color b = cg_color_mult_by_factor(reflected, intersection->sphere->material->reflectionFraction);
             result = cg_color_add(a, b);
