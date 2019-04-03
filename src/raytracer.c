@@ -59,14 +59,12 @@ Color trace_ray(Scene* scene, Vec3* O, Vec3* D, float minLambda, float maxLambda
         Block *currentLightBlock = scene->lights->head;
         Light *currentLight;
         Vec3 *L;
-        Vec3 *oppositeL;
         Intersection *shadow;
         while(currentLightBlock != NULL)
         {
             currentLight = (Light *) currentLightBlock->data;
             L = vec3_diff(currentLight->position, P);
-            oppositeL = vec3_diff(P, currentLight->position);
-            shadow = intersect(scene, P, oppositeL, EPSILON, 1-EPSILON);
+            shadow = intersect(scene, P, L, EPSILON, 1-EPSILON);
             if(shadow->sphere == NULL)
             {
                Color lambertColor = lambert(P, N, V, L, currentLight, intersection->sphere->material, scene->ambienceLight);
@@ -75,7 +73,6 @@ Color trace_ray(Scene* scene, Vec3* O, Vec3* D, float minLambda, float maxLambda
 
             // Liberar recursos.
             vec3_free(L);
-            vec3_free(oppositeL);
             intersection_free(shadow);
 
             currentLightBlock = currentLightBlock->next;

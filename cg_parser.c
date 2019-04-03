@@ -25,7 +25,7 @@ Scene* cg_parse_conf(char* scene_file){
                 token = strtok(NULL," \n\t");
                 float cam_pos_z = atof(token);
 
-                // Almacenar posición de la cámara.
+                // Store camera position.
                 Vec3 *camera = vec3_new(cam_pos_x, cam_pos_y, cam_pos_z);
                 scene->camera = camera;
             }
@@ -36,7 +36,7 @@ Scene* cg_parse_conf(char* scene_file){
                     token = strtok(NULL," \n\t");
                     float d = atof(token);
 
-                    // Almacenar distancia al plano de proyección.
+                    // Distance to projection plane.
                     scene->distance = d;
                 }
                 else

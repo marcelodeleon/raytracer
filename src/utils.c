@@ -62,8 +62,8 @@ float solveCuadraticEquation(float a, float b, float c)
     else
     {
         // Retorno la solución más chica, este es el lambda de la intersección más cercano a la cámara.
-        solution1 = ( -b + sqrt(delta) ) / 2 * a;
-        solution2 = ( -b - sqrt(delta) ) / 2 * a;
+        solution1 = ( -b + sqrt(delta) ) / ( 2 * a );
+        solution2 = ( -b - sqrt(delta) ) / ( 2 * a );
 
         solution = min(solution1, solution2);
     }
